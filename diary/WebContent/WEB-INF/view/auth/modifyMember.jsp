@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보 비밀번호 수정</title>
+<title>modifyMember</title>
 </head>
 <body>
 	<h1>회원정보 수정</h1>

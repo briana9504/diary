@@ -12,11 +12,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-/**
- * Servlet Filter implementation class AuthFilter
- */
-@WebFilter("/auth/*")// /Auth/IndexController -> 요청 EncodingFilter 2. AuthFilter 3.IndexController
+///auth/가 들어있을 경우 로그인되어있는지 확인
+@WebFilter("/_auth/*")// /Auth/IndexController -> 요청 EncodingFilter 2. AuthFilter 3.IndexController
 //4.AuthFilter 5.EncodingFilter (response필터링)
 public class AuthFilter implements Filter {
 	@Override
@@ -27,6 +24,7 @@ public class AuthFilter implements Filter {
 		HttpSession session = httpRequest.getSession();
 		
 		if(session.getAttribute("sessionMember") == null) {
+			//response도 HttpServletResponse가 아닌 ServletResponse이므로 형변환 해줘야함(다향성!!)
 			HttpServletResponse httpResponse = (HttpServletResponse)response;
 			httpResponse.sendRedirect(httpRequest.getContextPath()+"/login");
 			return;//새로운 요청발생으로 doFilter매서드를 종료

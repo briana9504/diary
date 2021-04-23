@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class EncodingFilter
  */
-@WebFilter("/*")
+@WebFilter("/*")//모든 request마다 utf-8을 인코딩해준다.
 public class EncodingFilter implements Filter {
 
 	//생성자
@@ -30,7 +30,7 @@ public class EncodingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		//타겟요청이 실행전에 실행되는 코드들
 		request.setCharacterEncoding("utf-8");
-		chain.doFilter(request, response);
+		chain.doFilter(request, response);//(request)전에 코딩하면 타겟요청 전에 실행, (response)후에 코딩하면 타겟요청 후에 실행
 		//타겟요청이 실행 후에 실행되는 코드들
 	}
 

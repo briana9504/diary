@@ -13,7 +13,7 @@ public class DBUtil {
 		//정확한 예외 처리
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/diary","root","java1004");
-			conn.setAutoCommit(false);
+			conn.setAutoCommit(false);//자동으로 commit되는 것을 막아준다.
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -23,9 +23,9 @@ public class DBUtil {
 	}
 	
 	//2. DB연결(conn, stmt, rs) 해제 -gabage collect가 정리하기 전에 정리해야할 것이 있음: 강제로 메모리 안에서 삭제해줄 필요가 있음
-		//정리할때는 최근에 생긴 순서로 정리함
+	//정리할때는 최근에 생긴 순서로 정리함
 		public void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
-			if(rs != null) {//if 문으로 NullpointException 막음
+			if(rs != null) {//if 문으로 NullpointException 막음 : rs,stmt,conn을 한꺼번에 사용하지 않는 경우가 더 많으므로 null값이 들어올 경우가 많다.
 				try {
 					rs.close();
 				} catch (Exception e) {

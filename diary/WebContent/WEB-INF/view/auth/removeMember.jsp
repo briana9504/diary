@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>remonveMember</title>
 </head>
 <body>
 	<form method="post" action="${pageContext.request.contextPath}/auth/removeMember">

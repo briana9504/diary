@@ -7,7 +7,7 @@
 <title>login</title>
 </head>
 <body>
-	<!-- 로그인 전 -->
+	<!-- 로그인 전: 로그인, 회원가입만 있음 -->
 	<c:if test="${sessionMember == null}">
 		<h1>login</h1>
 		<form action="${pageContext.request.contextPath}/login" method="post">
@@ -29,7 +29,7 @@
 	<!-- 로그인 후 -->
 	<c:if test="${sessionMember != null}">
 		<div>${sessionMember.memberId} 님 반값습니다.</div>
-		<div><a href="/auth/">다이어리</a></div>
+		<div><a href="${pageContext.request.contextPath}/auth/diary">다이어리</a></div>
 		<div><a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a></div>
 		<div><a href="${pageContext.request.contextPath}/auth/modifyMember">회원 정보수정</a></div>
 		<div><a href="${pageContext.request.contextPath}/auth/removeMember">회원탈퇴</a></div>

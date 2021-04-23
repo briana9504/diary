@@ -10,7 +10,7 @@ import gdu.diary.vo.Member;
 
 public class MemberDao {
 	private DBUtil dbUtil;
-	//회원탈퇴
+	//회원탈퇴 - rowCnt 가 0이 아니면 삭제 성공
 	public int deleteMemberByKey(Connection conn, Member member) throws SQLException {
 		int rowCnt = 0; //삭제된 줄 수를 구함
 		this.dbUtil = new DBUtil();
@@ -103,7 +103,7 @@ public class MemberDao {
 			}
 			
 		} finally {
-			this.dbUtil.close(rs, stmt, null);
+			this.dbUtil.close(rs, stmt, null); //conn 닫으면 안됨 conn은 service에서 생성하고 닫음
 		}
 		
 		return returnMember;
