@@ -10,6 +10,24 @@ import gdu.diary.vo.Member;
 
 public class MemberDao {
 	private DBUtil dbUtil;
+	//회원탈퇴
+	public int deleteMemberByKey(Connection conn, Member member) throws SQLException {
+		int rowCnt = 0; //삭제된 줄 수를 구함
+		this.dbUtil = new DBUtil();
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt = conn.prepareStatement(MemberQuery.DELETE_MEMBER_BY_KEY);
+			stmt.setInt(1, member.getMemberNo());
+			stmt.setString(2, member.getMemberPw());
+			System.out.printf("stmt: %s<MemberDao.deleteMemberByKey()>\n", stmt);
+			rowCnt = stmt.executeUpdate();
+		}finally {
+			this.dbUtil.close(null, stmt, null);
+		}
+		return rowCnt;
+	}
+	
 	//회원 비밀번호 업데이트
 	public void updateMemberPw(Connection conn, Member member) throws SQLException {
 		this.dbUtil = new DBUtil();
@@ -25,10 +43,8 @@ public class MemberDao {
 		} finally {
 			this.dbUtil.close(null, stmt, null);
 		}
-		
-		
 	}
-	//회원가입 아이디 유효성검사
+	//회원가입 아이디 유효성검사 - 아이디가 있으면 checkMemberId를 리턴한다.
 	public String checkMemberId(Connection conn, Member member) throws SQLException {
 		this.dbUtil = new DBUtil();
 		PreparedStatement stmt = null;

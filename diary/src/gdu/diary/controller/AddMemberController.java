@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import gdu.diary.service.MemberService;
 import gdu.diary.vo.Member;
 
-@WebServlet("/insertMember")
-public class InsertMemberController extends HttpServlet {
+@WebServlet("/addMember")
+public class AddMemberController extends HttpServlet {
 	private MemberService memberService;
 	//회원가입 폼으로
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/member/insertMember.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/addMember.jsp").forward(request, response);
 	}
 	//회원가입 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,6 +30,13 @@ public class InsertMemberController extends HttpServlet {
 		System.out.println(member.toString());
 		
 		this.memberService = new MemberService();
+		
+		boolean check = this.memberService.checkMemberIdAndAddMember(member);
+		if(check == false) {
+			response.sendRedirect(request.getContextPath()+"/addMember");
+			return;
+		}
+		/*
 		//아이디 유효성검사
 		if(this.memberService.checkMemberIdForInsert(member) != null) {
 			System.out.println("이미 사용중인 아이디입니다.");
@@ -38,6 +45,7 @@ public class InsertMemberController extends HttpServlet {
 		}
 		//회원가입
 		this.memberService.addMember(member);
+		*/
 		//회원가입 성공
 		response.sendRedirect(request.getContextPath()+"/login");
 	}

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert Memeber Form</title>
+<title>add Memeber Form</title>
 </head>
 <body>
 	<h1>회원가입</h1>
 	<div>
-		<form action="${pageContext.request.contextPath}/insertMember" method="post">
+		<form action="${pageContext.request.contextPath}/addMember" method="post">
 			<div>ID: </div>
 			<div><input type="text" name="memberId"></div>
 			<div>PW: </div>

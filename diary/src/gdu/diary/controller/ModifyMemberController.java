@@ -15,12 +15,12 @@ import gdu.diary.vo.Member;
 /**
  * Servlet implementation class UpdateMemberPw
  */
-@WebServlet("/auth/updateMemberPw")
-public class UpdateMemberPwController extends HttpServlet {
+@WebServlet("/auth/modifyMember")
+public class ModifyMemberController extends HttpServlet {
 	private MemberService memberService;
 	//비밀번호 변경 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/member/updateMemberPw.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/modifyMember.jsp").forward(request, response);
 	}
 
 	//비밀번호 변경 action
@@ -37,9 +37,7 @@ public class UpdateMemberPwController extends HttpServlet {
 		//비밀번호 변경 하고 로그아웃 후 로그인페이지 돌아가기
 		this.memberService.modifyMemberPw(member);
 		
-		session.invalidate();
-		
-		response.sendRedirect(request.getContextPath()+"/login");
+		response.sendRedirect(request.getContextPath()+"/auth/logout");
 	}
 
 }

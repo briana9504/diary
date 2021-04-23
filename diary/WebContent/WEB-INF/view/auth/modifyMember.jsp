@@ -7,12 +7,11 @@
 <title>회원정보 비밀번호 수정</title>
 </head>
 <body>
-	<h1>회원 비밀번호 수정</h1>
-	<form method="post" action="${pageContext.request.contextPath}/auth/updateMemberPw">
+	<h1>회원정보 수정</h1>
+	<form method="post" action="${pageContext.request.contextPath}/auth/modifyMember">
 		<div>PW: </div>
 		<div><input type="password" name="memberPw"></div>
 		<button type="submit">비밀번호 변경</button>
 	</form>
-
 </body>
 </html>

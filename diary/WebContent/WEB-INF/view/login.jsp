@@ -16,19 +16,23 @@
 			<div><input type="text" name="memberId" value="goodee@naver.com"></div>
 			<div>PW: </div>
 			<div><input type="password" name="memberPw" value="1234"></div>
-			<div><button type="submit">로그인</button></div>
+			<div>
+				<button type="submit">로그인</button>
+				<a href="${pageContext.request.contextPath}/addMember">
+					<button type="button">회원가입</button>
+				</a>
+			</div>
 		</div>
 		</form>
-		<div>
-			<a href="${pageContext.request.contextPath}/insertMember">회원가입</a>
-		</div>
+
 	</c:if>
 	<!-- 로그인 후 -->
 	<c:if test="${sessionMember != null}">
 		<div>${sessionMember.memberId} 님 반값습니다.</div>
 		<div><a href="/auth/">다이어리</a></div>
-		<div><a href="${pageContext.request.contextPath}/auth/updateMemberPw">비밀번호 변경</a></div>
 		<div><a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a></div>
+		<div><a href="${pageContext.request.contextPath}/auth/modifyMember">회원 정보수정</a></div>
+		<div><a href="${pageContext.request.contextPath}/auth/removeMember">회원탈퇴</a></div>
 	</c:if>
 </body>
 </html>
