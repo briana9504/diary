@@ -14,6 +14,7 @@
 	<div>endDay: ${diaryMap.endDay}</div>
 	<div> totalCell: ${totalCell}</div>
 -->
+	<div>${diaryMap.todoList}</div>
 	<c:set var="totalCell" value="${diaryMap.startBlank+diaryMap.endDay+diaryMap.endBlank}"></c:set>
 	<!-- c:set 변수만들고 초기화-->
 	<h2><!-- 다음달이나 전달로 넘어갈때 년도와 월을 넘겨줌 -->
@@ -26,8 +27,18 @@
 			<c:forEach var="i" begin="1" end="${totalCell}" step="1">
 				<c:set var="num" value="${i-diaryMap.startBlank}"></c:set>
 				<td>
-					<c:if test="${num > 0 && num <= diaryMap.endDay}">
-						<a href="${pageContext.request.contextPath}/auth/addTodo?targetYear=${diaryMap.currentYear}&targetMonth=${diaryMap.currentMonth+1}&%targetDate=${num}">${num}</a>
+					<c:if test="${num > 0 && num <= diaryMap.endDay}"><!-- db에는 달을 +1해서 넘겨줘야한다. -->
+						<a href="${pageContext.request.contextPath}/auth/addTodo?year=${diaryMap.currentYear}&month=${diaryMap.currentMonth+1}&day=${num}">${num}</a>
+						<div>
+							<c:forEach var="todo" items="${diaryMap.todoList}">
+								<c:if test="${todo.todoDate == num}">
+									<div style="background-color:${todo.todoFontColor}">
+										<a href="${pageContext.request.contextPath}/auth/todoOne?todoNo=${todo.todoNo}">${todo.todoTitle}</a>
+									</div>
+									<!-- todoOne상세정보 - 수정 - 삭제 -->
+								</c:if>
+							</c:forEach>
+						</div>
 					</c:if>
 					<!-- 뒤에 비어있는 셀 -->
 					<c:if test="${num <= 0 || num > diaryMap.endDay}">

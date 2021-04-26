@@ -4,10 +4,17 @@ public class Todo {
 	private int todoNo;
 	private int memberNo;
 	private String todoDate;
-	private String stodoTitle;
+	private String todoTitle;
 	private String todoContent;
 	private String todoFontColor;
+	private String todoAddDate;
 	
+	public String getTodoAddDate() {
+		return todoAddDate;
+	}
+	public void setTodoAddDate(String todoAddDate) {
+		this.todoAddDate = todoAddDate;
+	}
 	public int getTodoNo() {
 		return todoNo;
 	}
@@ -26,11 +33,11 @@ public class Todo {
 	public void setTodoDate(String todoDate) {
 		this.todoDate = todoDate;
 	}
-	public String getStodoTitle() {
-		return stodoTitle;
+	public String getTodoTitle() {
+		return todoTitle;
 	}
-	public void setStodoTitle(String stodoTitle) {
-		this.stodoTitle = stodoTitle;
+	public void setTodoTitle(String stodoTitle) {
+		this.todoTitle = stodoTitle;
 	}
 	public String getTodoContent() {
 		return todoContent;
@@ -47,8 +54,9 @@ public class Todo {
 	
 	@Override
 	public String toString() {
-		return "Todo [todoNo=" + todoNo + ", memberNo=" + memberNo + ", todoDate=" + todoDate + ", stodoTitle="
-				+ stodoTitle + ", todoContent=" + todoContent + ", todoFontColor=" + todoFontColor + "]";
+		return "Todo [todoNo=" + todoNo + ", memberNo=" + memberNo + ", todoDate=" + todoDate + ", todoTitle="
+				+ todoTitle + ", todoContent=" + todoContent + ", todoFontColor=" + todoFontColor + ", todoAddDate="
+				+ todoAddDate + "]";
 	} 
 	
 	

@@ -44,7 +44,12 @@ public class MemberService {
 			e.printStackTrace();
 			return false;//return값을 넣었어도 finally는 처리한다.
 		} finally {
-			this.dbUtil.close(null, null, conn);
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return (todoRowCnt+memberRowCnt) > 0;
 	}
@@ -67,7 +72,12 @@ public class MemberService {
 			}
 			e.printStackTrace();
 		} finally {
-			this.dbUtil.close(null, null, conn);
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -98,7 +108,12 @@ public class MemberService {
 			e.printStackTrace();
 			checkId = false;//catch로 넘어오면 가입실패
 		} finally {
-			this.dbUtil.close(null, null, conn);
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return checkId;
 	}
@@ -121,7 +136,12 @@ public class MemberService {
 			}
 			e.printStackTrace();
 		}finally {
-			this.dbUtil.close(null, null, conn);//conn은 service에서 닫아줘야 한다.//나머지는 dao에서 닫아줌
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//conn은 service에서 닫아줘야 한다.//나머지는 dao에서 닫아줌
 		}
 		return returnMember;
 	}

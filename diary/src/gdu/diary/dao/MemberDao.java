@@ -23,7 +23,7 @@ public class MemberDao {
 			System.out.printf("stmt: %s<MemberDao.deleteMemberByKey()>\n", stmt);
 			rowCnt = stmt.executeUpdate();
 		}finally {
-			this.dbUtil.close(null, stmt, null);
+			stmt.close();
 		}
 		return rowCnt;
 	}
@@ -41,7 +41,7 @@ public class MemberDao {
 			stmt.executeUpdate();
 			
 		} finally {
-			this.dbUtil.close(null, stmt, null);
+			stmt.close();
 		}
 	}
 	//회원가입 아이디 유효성검사 - 아이디가 있으면 checkMemberId를 리턴한다.
@@ -61,7 +61,8 @@ public class MemberDao {
 			}
 			
 		} finally {
-			this.dbUtil.close(rs, stmt, null);
+			rs.close();
+			stmt.close();		
 		}
 		return checkMemberId;
 	}
@@ -78,7 +79,7 @@ public class MemberDao {
 			System.out.printf("stmt: %s<MemberDao.insertMember()>\n", stmt);
 			stmt.executeUpdate();
 		} finally {
-			this.dbUtil.close(null, stmt, null);
+			stmt.close();
 		}
 		
 	}
@@ -103,7 +104,9 @@ public class MemberDao {
 			}
 			
 		} finally {
-			this.dbUtil.close(rs, stmt, null); //conn 닫으면 안됨 conn은 service에서 생성하고 닫음
+			rs.close();
+			stmt.close(); //conn 닫으면 안됨 conn은 service에서 생성하고 닫음
+			
 		}
 		
 		return returnMember;
