@@ -31,6 +31,7 @@
 						<a href="${pageContext.request.contextPath}/auth/addTodo?year=${diaryMap.currentYear}&month=${diaryMap.currentMonth+1}&day=${num}">${num}</a>
 						<div>
 							<c:forEach var="todo" items="${diaryMap.todoList}">
+								<!-- todoDate와 num가 일치하면 일정을 보여준다. -->
 								<c:if test="${todo.todoDate == num}">
 									<div style="background-color:${todo.todoFontColor}">
 										<a href="${pageContext.request.contextPath}/auth/todoOne?todoNo=${todo.todoNo}">${todo.todoTitle}</a>

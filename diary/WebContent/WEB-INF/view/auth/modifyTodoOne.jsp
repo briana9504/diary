@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>todoOne수정</h1>
-	<form action="${pageContext.request.contextPath}/auth/modifyTodo" method="post">
+	<form action="${pageContext.request.contextPath}/auth/modifyTodoOne" method="post">
 	<div>
 		<input type="hidden" name="todoNo" value="${todoOne.todoNo}">
 	</div>

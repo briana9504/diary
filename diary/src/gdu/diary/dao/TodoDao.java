@@ -31,12 +31,13 @@ public class TodoDao {
 		
 	}
 	//todo삭제: todoNo를 이용하여
-	public void deleteTodo(Connection conn, int todoNo) throws SQLException {
+	public void deleteTodoOne(Connection conn, int todoNo, int memberNo) throws SQLException {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = conn.prepareStatement(TodoQuery.DELETE_TODO_BY_TODO_NO);
+			stmt = conn.prepareStatement(TodoQuery.DELETE_TODO_ONE_BY_TODO_NO);
 			stmt.setInt(1, todoNo);
+			stmt.setInt(2, memberNo);
 			System.out.printf("stmt: %s<TodoDao.deleteTodo()>\n", stmt);
 			stmt.executeUpdate();			
 		} finally {
@@ -44,7 +45,7 @@ public class TodoDao {
 		}
 	}
 	//todoOne : 일정 자세히 보기
-	public Todo selectTodoOneByTodoNo(Connection conn, int todoNo) throws SQLException {
+	public Todo selectTodoOneByTodoNo(Connection conn, int todoNo, int memberNo) throws SQLException {
 		Todo todo = new Todo();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -52,6 +53,7 @@ public class TodoDao {
 		try {//todoNo 넘기고 todoDate(일정), todoTitle(제목), todoFontColor(배경색), todoContent(상세일정설명) 받기
 			stmt = conn.prepareStatement(TodoQuery.SELECT_TODO_ONE_BY_TODO_NO);
 			stmt.setInt(1, todoNo);
+			stmt.setInt(2, memberNo);
 			System.out.printf("stmt: %s<TodoDao.selectTodoOneByTodoNo()>\n", stmt);
 			rs = stmt.executeQuery();
 			if(rs.next()) {

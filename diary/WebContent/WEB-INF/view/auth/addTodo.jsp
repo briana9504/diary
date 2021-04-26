@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body><!--  -->
+<body>
 	<h1>todo 입력</h1>
 	<form action="${pageContext.request.contextPath}/auth/addTodo" method="post">
 		<div>todoDate: </div><!-- 날짜 입력 방식 ex) 2021-04-26 -->

@@ -25,8 +25,10 @@ public class DiaryController extends HttpServlet {
 		String targetYear = request.getParameter("targetYear");// "2021" 문자열로 넘어옴,.. 값 없으면 null
 		String targetMonth = request.getParameter("targetMonth");// 4월이면 ...3, 5월이면 ... 4
 		//diary 서비스와 연결해서 달력을 만들기 위해 정보를 받아옴(dao와 연결x)
+		//memberNo는 멤버별 일정을 받아오기 위해 넘겨줌
 		this.diaryService = new DiaryService();
 		Map<String, Object> diaryMap = this.diaryService.getDiary(memberNo, targetYear, targetMonth);
+		System.out.println("TodoList: "+diaryMap.get("todoList"));
 		
 		
 		//받아온 값을 request에 넣어줌

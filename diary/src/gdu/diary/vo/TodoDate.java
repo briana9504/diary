@@ -25,7 +25,7 @@ public class TodoDate {
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() {//db 날짜가 0000-00-00 형식으로 들어가므로 오버라이딩 한다.
 		String str = ""+ this.year;
 		if(this.month < 10) {
 			str += "-0" + this.month;

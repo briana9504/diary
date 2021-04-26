@@ -16,8 +16,7 @@ public class TodoService {
 		this.todoDao = new TodoDao();
 		Connection conn = null;
 		
-		
-		try {
+		try {//commit과 rollback 잘 했는지 확인하기
 			conn = this.dbUtil.getConnection();
 			this.todoDao.updateTodo(conn, todo);
 			conn.commit();
@@ -37,14 +36,14 @@ public class TodoService {
 		}
 	}
 	//todo삭제
-	public void removeTodoByTodoNo(int todoNo) {
+	public void removeTodoOneByTodoNo(int todoNo, int memberNo) {
 		this.dbUtil = new DBUtil();
 		this.todoDao = new TodoDao();
 		Connection conn = null;
 		
 		try {
 			conn = this.dbUtil.getConnection();
-			this.todoDao.deleteTodo(conn, todoNo);
+			this.todoDao.deleteTodoOne(conn, todoNo, memberNo);
 			conn.commit();
 		} catch (SQLException e) {
 			try {
@@ -64,16 +63,15 @@ public class TodoService {
 		}
 	}
 	//todoOne - 일정 자세히 보기
-	public Todo getTodoOneByTodoNo(int todoNo) {
+	public Todo getTodoOneByTodoNo(int todoNo, int memberNo) {
 		Todo todo = new Todo();
 		this.dbUtil = new DBUtil();
 		this.todoDao = new TodoDao();
 		Connection conn = null;
 		
-		
 		try {
 			conn = this.dbUtil.getConnection();
-			todo = this.todoDao.selectTodoOneByTodoNo(conn, todoNo);
+			todo = this.todoDao.selectTodoOneByTodoNo(conn, todoNo, memberNo);
 			conn.commit();
 		} catch (SQLException e) {
 			try {
@@ -86,7 +84,6 @@ public class TodoService {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -94,13 +91,12 @@ public class TodoService {
 		return todo;
 	}
 	
-	//addTodo - diary일정 입력
+	//addTodo - diary에 일정 입력
 	public int addTodo(Todo todo) {
 		int rowCnt = 0;
 		this.dbUtil = new DBUtil();
 		Connection conn = null;
 		this.todoDao = new TodoDao();
-		
 		
 		try {
 			conn = this.dbUtil.getConnection();
@@ -113,7 +109,7 @@ public class TodoService {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
-		} finally {
+		} finally {//conn 사용했으면 닫기
 			try {
 				conn.close();
 			} catch (SQLException e) {
