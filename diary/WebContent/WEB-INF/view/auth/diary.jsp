@@ -14,7 +14,30 @@
 	<div>endDay: ${diaryMap.endDay}</div>
 	<div> totalCell: ${totalCell}</div>
 -->
-	<div>${diaryMap.todoList}</div>
+	<!-- 
+	${diaryMap.todoList}
+	<c:forEach var="a" items="${diaryMap.todoList}">
+		제목: ${a.todoTitle} - 번호: ${a.todoNo}/
+	</c:forEach>
+	 -->
+	<h1>Dday List</h1>
+	<div>
+		<table border ="1">
+			<tr>
+				<th>todoDate</th>
+				<th>todoTile</th>
+				<th>dday</th>
+			</tr>
+			<c:forEach var="m" items="${diaryMap.ddayList}">
+				<tr>
+					<td>${m.todoDate}</td>
+					<td><a href="${pageContext.request.contextPath}/auth/todoOne?todoNo=${m.todoNo}">${m.todoTitle}</a></td>
+					<td>-${m.dday}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	
 	<c:set var="totalCell" value="${diaryMap.startBlank+diaryMap.endDay+diaryMap.endBlank}"></c:set>
 	<!-- c:set 변수만들고 초기화-->
 	<h2><!-- 다음달이나 전달로 넘어갈때 년도와 월을 넘겨줌 -->
@@ -24,6 +47,15 @@
 	</h2>
 	<table border="1" width="90%">
 		<tr><!-- i-diaryMap.startBlank: 전체셀에서 비어있는 셀을 빼고 0이하의 수는 보여주지 않는다. -->
+			<th>일</th>
+			<th>월</th>
+			<th>화</th>
+			<th>수</th>
+			<th>목</th>
+			<th>금</th>
+			<th>토</th>
+		</tr>
+		<tr>
 			<c:forEach var="i" begin="1" end="${totalCell}" step="1">
 				<c:set var="num" value="${i-diaryMap.startBlank}"></c:set>
 				<td>

@@ -5,11 +5,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import gdu.diary.vo.Todo;
 
 public class TodoDao {
+	//dday 출력
+	public List<Map<String, Object>> selectTodoDdayList(Connection conn, int memberNo) throws SQLException{
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<Map<String, Object>> list = new ArrayList<>();
+		try {
+			stmt = conn.prepareStatement(TodoQuery.SELECT_TODO_DDAY_LIST);
+			stmt.setInt(1, memberNo);
+			System.out.printf("<TodoDao.selectTodoDdayList()>stmt: %s\n", stmt);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();//뒤의 <String, Object> 생략가능....
+				map.put("todoNo", rs.getInt("todoNo"));
+				map.put("todoTitle", rs.getString("todoTitle"));
+				map.put("todoDate", rs.getString("todoDate"));
+				map.put("dday", rs.getInt("dday"));
+				list.add(map);
+			}
+		}finally {
+			rs.close(); // issue -rs가 없을경우....?
+			stmt.close();
+		}
+		return list;
+	}
 	//todo수정
 	public void updateTodo(Connection conn, Todo todo) throws SQLException {
 		PreparedStatement stmt = null;
@@ -22,7 +49,7 @@ public class TodoDao {
 			stmt.setString(3, todo.getTodoContent());
 			stmt.setString(4, todo.getTodoFontColor());
 			stmt.setInt(5, todo.getTodoNo());
-			System.out.printf("stmt: %s<TodoDao.updateTodo()>\n", stmt);
+			System.out.printf("<TodoDao.updateTodo()>stmt: %s\n", stmt);
 			stmt.executeUpdate();
 			
 		} finally {
@@ -38,7 +65,7 @@ public class TodoDao {
 			stmt = conn.prepareStatement(TodoQuery.DELETE_TODO_ONE_BY_TODO_NO);
 			stmt.setInt(1, todoNo);
 			stmt.setInt(2, memberNo);
-			System.out.printf("stmt: %s<TodoDao.deleteTodo()>\n", stmt);
+			System.out.printf("<TodoDao.deleteTodo()>stmt: %s\n", stmt);
 			stmt.executeUpdate();			
 		} finally {
 			stmt.close();
@@ -54,7 +81,7 @@ public class TodoDao {
 			stmt = conn.prepareStatement(TodoQuery.SELECT_TODO_ONE_BY_TODO_NO);
 			stmt.setInt(1, todoNo);
 			stmt.setInt(2, memberNo);
-			System.out.printf("stmt: %s<TodoDao.selectTodoOneByTodoNo()>\n", stmt);
+			System.out.printf("<TodoDao.selectTodoOneByTodoNo()>stmt: %s\n", stmt);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				todo.setTodoNo(rs.getInt("todoNo"));
@@ -83,7 +110,7 @@ public class TodoDao {
 			stmt.setInt(3, memberNo);
 			stmt.setInt(1, targetYear);
 			stmt.setInt(2, targetMonth);
-			System.out.printf("stmt: %s<TodoDao.selectTodoListByDate()>\n", stmt);
+			System.out.printf("<TodoDao.selectTodoListByDate()>stmt: %s\n", stmt);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -113,6 +140,7 @@ public class TodoDao {
 			stmt.setString(3, todo.getTodoTitle());
 			stmt.setString(4, todo.getTodoContent());
 			stmt.setString(5, todo.getTodoFontColor());
+			System.out.printf("<TodoDao.insertTodo()>stmt: %s\n", stmt);
 			rowCnt = stmt.executeUpdate();
 		} finally {
 			stmt.close();
@@ -129,7 +157,7 @@ public class TodoDao {
 		try {
 			stmt = conn.prepareStatement(TodoQuery.DELETE_TODO_BY_MEMBER);
 			stmt.setInt(1, memberNo);
-			System.out.printf("stmt: %s<TodoDao.deleteTodoByKey()>\n", stmt);
+			System.out.printf("<TodoDao.deleteTodoByKey()>stmt: %s\n", stmt);
 			rowCnt = stmt.executeUpdate();
 		} finally {
 			stmt.close();//conn은 service에서 닫는다.

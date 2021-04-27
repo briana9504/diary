@@ -1,6 +1,7 @@
 package gdu.diary.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import gdu.diary.vo.Todo;
 
 import gdu.diary.service.DiaryService;
 import gdu.diary.vo.Member;
@@ -28,13 +31,14 @@ public class DiaryController extends HttpServlet {
 		//memberNo는 멤버별 일정을 받아오기 위해 넘겨줌
 		this.diaryService = new DiaryService();
 		Map<String, Object> diaryMap = this.diaryService.getDiary(memberNo, targetYear, targetMonth);
-		System.out.println("TodoList: "+diaryMap.get("todoList"));
-		
-		
+		//todoList - list<Todo>, ddayList -list<Map<String,Object>> 디버깅
+		System.out.println("TodoList: "+diaryMap.get("todoList")); //todoNo, todoDate, todoTitle, todoFontColor
+		System.out.println("ddayList: "+diaryMap.get("ddayList").toString());// dday, todoDate, todoNo, todoTitle
+
 		//받아온 값을 request에 넣어줌
 		request.setAttribute("diaryMap", diaryMap);
 		//다이어리 뷰로 forward
-		request.getRequestDispatcher("/WEB-INF/view/auth/diary.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/diaryTest.jsp").forward(request, response);
 	}
 
 

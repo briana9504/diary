@@ -17,7 +17,7 @@ import gdu.diary.vo.Member;
 public class RemoveTodoOneController extends HttpServlet {
 	private TodoService todoService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//삭제할 일정을 찾기위해 todoNo를 넘겨받음
+		//삭제할 일정을 찾기위해 todoNo를 넘겨받음 - 생각해보면 여기서 Integer.parseInt를 아해줘도 될거같다.. 서비스에서 해줘도 괜찮을 지도..?
 		int todoNo = Integer.parseInt(request.getParameter("todoNo"));
 		
 		//!!!!혹시 다른 사람들이 들어와서 삭제할 가능성이 있으므로 섹션에 memberNo 넘겨받기
@@ -32,6 +32,7 @@ public class RemoveTodoOneController extends HttpServlet {
 		//삭제한 일정 달의 달력으로 돌아가기
 		//넘겨받음 todoDate는 2021-04-21로 되어 있으므로 "-"를 기준으로 잘라서 년도와 달을 구한다.
 		String[] arr = todoDate.split("-");
+		//자바의 캘린더는 달을 0~11월로 세므로 본래 달로부터 -1 해줘야한다.
 		response.sendRedirect(request.getContextPath() + "/auth/diary?targetYear="+arr[0]+"&targetMonth="+(Integer.parseInt(arr[1])-1));
 	}
 }

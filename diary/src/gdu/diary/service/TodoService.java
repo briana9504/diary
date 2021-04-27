@@ -10,7 +10,7 @@ import gdu.diary.vo.Todo;
 public class TodoService {
 	private DBUtil dbUtil;
 	private TodoDao todoDao;
-	//todo수정
+	//todoOne수정
 	public void modifyTodoOne(Todo todo) {
 		this.dbUtil = new DBUtil();
 		this.todoDao = new TodoDao();
@@ -35,7 +35,7 @@ public class TodoService {
 			}
 		}
 	}
-	//todo삭제
+	//todoOne삭제
 	public void removeTodoOneByTodoNo(int todoNo, int memberNo) {
 		this.dbUtil = new DBUtil();
 		this.todoDao = new TodoDao();
@@ -49,7 +49,6 @@ public class TodoService {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -57,7 +56,6 @@ public class TodoService {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
