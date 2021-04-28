@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <title>diary </title>
+    <title>GURU Able - Free Lite Admin Template </title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,28 +30,6 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/jquery.mCustomScrollbar.css">
-<style>
-th{
-	height: 40px;
-	background: #F5A9BC;
-	text-align: center;
-	text-transform: uppercase;
-	line-height: 20px;
-	border: none !important;
-	padding: 10px 6px;
-	color: #fff;
-	font-size: 13px;
-}
-td:hover{
-	background: #FAFAFA;
-}
-td{
-	height: 100px;
-	width: 14%;
-	
-}
-
-</style>
 </head>
 
 <body>
@@ -212,7 +190,7 @@ td{
                                             <div class="col-lg-8">
                                                 <div class="page-header-title">
                                                     <div class="d-inline">
-                                                        <h4>Diary</h4>
+                                                        <h4>일정 입력</h4>
                                                         <span>${sessionMember.memberId} 님 반값습니다.</span>
                                                     </div>
                                                 </div>
@@ -236,19 +214,16 @@ td{
                                     </div>
                                    
                                     <!-- Page-header end -->
-									<c:set var="totalCell" value="${diaryMap.startBlank+diaryMap.endDay+diaryMap.endBlank}"></c:set>
-									
-									
+                                    		
                                     <div class="page-body">
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>${diaryMap.currentYear}년 ${diaryMap.currentMonth+1}월</h5>
-                                                        <span><a href="${pageContext.request.contextPath}/auth/diary?targetYear=${diaryMap.currentYear}&targetMonth=${diaryMap.currentMonth-1}">이전달</a>
-		
-																<a href="${pageContext.request.contextPath}/auth/diary?targetYear=${diaryMap.currentYear}&targetMonth=${diaryMap.currentMonth+1}">다음달</a>
-														</span>
+                                                        <h5></h5>
+                                                        <span>
+                                                        	
+                                                        </span>
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option" style="width: 35px;">
                                                                 <li class=""><i class="icofont icofont-simple-left"></i></li>
@@ -260,92 +235,25 @@ td{
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-                                                            <table class="table">
-																<tr><!-- i-diaryMap.startBlank: 전체셀에서 비어있는 셀을 빼고 0이하의 수는 보여주지 않는다. -->
-																	<th>일</th>
-																	<th>월</th>
-																	<th>화</th>
-																	<th>수</th>
-																	<th>목</th>
-																	<th>금</th>
-																	<th>토</th>
-																</tr>
-																<tr>
-																	<c:forEach var="i" begin="1" end="${totalCell}" step="1">
-																		<c:set var="num" value="${i-diaryMap.startBlank}"></c:set>
-																		<td>
-																			<c:if test="${num > 0 && num <= diaryMap.endDay}"><!-- db에는 달을 +1해서 넘겨줘야한다. -->
-																				<a href="${pageContext.request.contextPath}/auth/addTodo?year=${diaryMap.currentYear}&month=${diaryMap.currentMonth+1}&day=${num}">${num}</a>
-																				<div>
-																					<c:forEach var="todo" items="${diaryMap.todoList}">
-																						<!-- todoDate와 num가 일치하면 일정을 보여준다. -->
-																						<c:if test="${todo.todoDate == num}">
-																							<div style="background-color:${todo.todoFontColor}">
-																								<a href="${pageContext.request.contextPath}/auth/todoOne?todoNo=${todo.todoNo}">${todo.todoTitle}</a>
-																							</div>
-																							<!-- todoOne상세정보 - 수정 - 삭제 -->
-																						</c:if>
-																					</c:forEach>
-																				</div>
-																			</c:if>
-																			<!-- 뒤에 비어있는 셀 -->
-																			<c:if test="${num <= 0 || num > diaryMap.endDay}">
-																				&nbsp;
-																			</c:if>	
-																		</td>
-																		<!-- 일주일이 지나면 다음줄로 간다. -->
-																		<c:if test="${i%7 == 0 }">
-																			</tr><tr>
-																		</c:if>
-																	</c:forEach>
-																	 
-																</tr>
-															</table>
-                                                       
+                                                         <!-- 내용 -->
+                                                     	<form action="${pageContext.request.contextPath}/auth/addTodo" method="post">
+															<div>todoDate: </div><!-- 날짜 입력 방식 ex) 2021-04-26 -->
+															<div><input type="text" class="form-control"  name="todoDate" value="${todoDate.toString()}" readOnly="readonly"></div>
+															<div>todoTitle :</div>
+															<div><input type="text" class="form-control" name="todoTitle"></div>
+															<div>todoContent</div>
+															<div><textarea name="todoContent" class="form-control" cols="80" rows="5"></textarea></div>
+															<div>todoFontColor: </div>
+															<div><input type="color" class="form-control" name="todoFontColor"></div>
+															<div><button type="submit">addTodo</button></div>
+														</form>
+									
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- dday -->
-                                    <div class="page-body">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Dday List</h5>
-                                                        <div class="card-header-right">
-                                                            <ul class="list-unstyled card-option" style="width: 35px;">
-                                                                <li class=""><i class="icofont icofont-simple-left"></i></li>
-                                                                <li><i class="icofont icofont-maximize full-card"></i></li>
-                                                                <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                                                <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                                                <li><i class="icofont icofont-error close-card"></i></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-block">
-                                                      <table class="table">
-															<tr>
-																<th>todoDate</th>
-																<th>todoTile</th>
-																<th>dday</th>
-															</tr>
-															<c:forEach var="m" items="${diaryMap.ddayList}">
-																<tr>
-																	<td class="dday">${m.todoDate}</td>
-																	<td><a href="${pageContext.request.contextPath}/auth/todoOne?todoNo=${m.todoNo}">${m.todoTitle}</a></td>
-																	<td>-${m.dday}</td>
-																</tr>
-															</c:forEach>
-														</table>      
-                                                       
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                             
                                 </div>
                             </div>
                             <div id="styleSelector">

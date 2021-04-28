@@ -33,7 +33,7 @@ public class TodoOneController extends HttpServlet {
 		System.out.println(todoOne.toString());
 		
 		request.setAttribute("todoOne", todoOne);
-		request.getRequestDispatcher("/WEB-INF/view/auth/todoOne.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/todoOneTest.jsp").forward(request, response);
 	}
 
 }
