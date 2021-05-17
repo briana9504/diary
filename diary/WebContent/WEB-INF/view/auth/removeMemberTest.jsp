@@ -30,6 +30,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/jquery.mCustomScrollbar.css">
+
 </head>
 
 <body>
@@ -212,7 +213,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
                                     <!-- Page-header end -->
                                     		
                                     <div class="page-body">
@@ -220,10 +220,7 @@
                                             <div class="col-sm-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5></h5>
-                                                        <span>
-                                                        	
-                                                        </span>
+                                                        
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option" style="width: 35px;">
                                                                 <li class=""><i class="icofont icofont-simple-left"></i></li>
@@ -237,13 +234,18 @@
                                                     <div class="card-block">
                                                          <!-- 내용 -->
 				                                    <form method="post" action="${pageContext.request.contextPath}/auth/removeMember">
-														<div>
-															memberPw:
-														</div>
-														<div>
-															<input type="password" name="memberPw">
-														</div>
-														<button type="submit">탈퇴</button>
+				                                    	<div class="row">
+				                                    		<div>
+																<h5>
+																	memberPw:
+																</h5>	
+															</div>
+															<div>
+																<input type="password" name="memberPw" class=".form-control">
+															</div>
+															<button type="submit" id="submitBtn" class="btn btn-out btn-primary">탈퇴</button>
+				                                    	</div>
+														
 													</form>
 									
                                                     </div>
