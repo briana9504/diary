@@ -45,7 +45,7 @@
                     <div class="login-card card-block auth-body mr-auto ml-auto">
                         <form action="${pageContext.request.contextPath}/login" method="post" class="md-float-material">
                             <div class="text-center">
-                                <img src="assets/images/auth/logo-dark.png" alt="logo.png">
+                                <img src="${pageContext.request.contextPath}/assets/images/diary.png" alt="logo.png">
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
@@ -82,7 +82,7 @@
                                         <p class="text-inverse text-left m-b-0"><b>Thank you and enjoy Diary.</b></p>
                                     </div>
                                     <div class="col-md-2">
-                                        <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                                        <img src="assets/images/diaryLogo.png" alt="small-logo.png">
                                     </div>
                                 </div>
 

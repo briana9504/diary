@@ -10,7 +10,7 @@
                   <i class="ti-search"></i>
               </a>
               <a href="${pageContext.request.contextPath}/login">
-              	&nbsp;&nbsp;&nbsp;&nbsp;<img class="img-fluid" src="assets/images/diaryW.png" alt="Theme-Logo" />
+              	&nbsp;&nbsp;&nbsp;&nbsp;<img class="img-fluid" src="${pageContext.request.contextPath}/assets/images/diaryW.png" alt="Theme-Logo" />
               </a>
               <a class="mobile-options">
                   <i class="ti-more"></i>
