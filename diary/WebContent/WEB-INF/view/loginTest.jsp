@@ -50,7 +50,7 @@
                             <div class="auth-box">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-left txt-primary">login</h3>
+                                        <h3 class="text-left txt-primary">로그인</h3>
                                     </div>
                                 </div>
                                 <hr/>
@@ -79,8 +79,7 @@
                                 <hr/>
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
-                                        <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                                        <p class="text-inverse text-left m-b-0"><b>Thank you and enjoy Diary.</b></p>
                                     </div>
                                     <div class="col-md-2">
                                         <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
@@ -107,148 +106,17 @@
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
-
-            <nav class="navbar header-navbar pcoded-header">
-                <div class="navbar-wrapper">
-
-                    <div class="navbar-logo">
-                        <a class="mobile-menu" id="mobile-collapse" href="#!">
-                            <i class="ti-menu"></i>
-                        </a>
-                        <a class="mobile-search morphsearch-search" href="#">
-                            <i class="ti-search"></i>
-                        </a>
-                        <a href="${pageContext.request.contextPath}/login">
-                        	&nbsp;&nbsp;&nbsp;&nbsp;<img class="img-fluid" src="assets/images/diaryW.png" alt="Theme-Logo" />
-                        </a>
-                        <a class="mobile-options">
-                            <i class="ti-more"></i>
-                        </a>
-                    </div>
-
-                    <div class="navbar-container container-fluid">
-                        <ul class="nav-left">
-                            <li>
-                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                            </li>
-                            
-                            <li>
-                                <a href="#!" onclick="javascript:toggleFullScreen()">
-                                    <i class="ti-fullscreen"></i>
-                                </a>
-                            </li>
-                        </ul>
-                         <ul class="nav-right">
-                            <li class="header-notification">
-                                <a href="#!">
-                                    <i class="ti-bell"></i>
-                                    <span class="badge bg-c-pink"></span>
-                                </a>
-                                <ul class="show-notification">
-                                    <li>
-                                        <h6>Notifications</h6>
-                                        <label class="label label-danger">New</label>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">John Doe</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Joseph William</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Sara Soudein</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        	<li class="user-profile header-notification">
-                                <a href="#!">
-                                    <span>${sessionMember.memberId}</span>
-                                    <i class="ti-angle-down"></i>
-                                </a>
-                                <ul class="show-notification profile-notification">
-                                   
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/auth/modifyMember">
-                                            <i class="ti-lock"></i> 비밀번호 수정
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/auth/logout">
-                                            <i class="ti-layout-sidebar-left"></i> Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+			<!-- 상단메뉴 -->
+           <div>
+				<jsp:include page="/WEB-INF/view/inc/topMenu.jsp"></jsp:include>
+			</div>
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    <nav class="pcoded-navbar">
-                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                        <div class="pcoded-inner-navbar main-menu">
-                            <div class="">
-                                <div class="main-menu-header">
-                                    <div class="user-details">
-                                        <span>${sessionMember.memberId}</span>       
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">메뉴</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="${pageContext.request.contextPath}/login">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">home</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="${pageContext.request.contextPath}/auth/diary">
-                                        <span class="pcoded-micon"><i class="ti-calendar"></i><b>a</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">다이어리</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="${pageContext.request.contextPath}/auth/logout">
-                                        <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>a</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">로그아웃</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="${pageContext.request.contextPath}/auth/removeMember">
-                                        <span class="pcoded-micon"><i class="ti-power-off"></i><b>a</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">회원탈퇴</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </nav>
+                	<!-- side 메뉴 -->
+		            <div>
+						<jsp:include page="/WEB-INF/view/inc/sideMenu.jsp"></jsp:include>
+					</div>
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
 
