@@ -38,7 +38,7 @@ public class DiaryController extends HttpServlet {
 		//받아온 값을 request에 넣어줌
 		request.setAttribute("diaryMap", diaryMap);
 		//다이어리 뷰로 forward
-		request.getRequestDispatcher("/WEB-INF/view/auth/diaryTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/diary.jsp").forward(request, response);
 	}
 
 

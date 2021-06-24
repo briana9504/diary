@@ -21,7 +21,7 @@ public class ModifyMemberController extends HttpServlet {
 	private MemberService memberService;
 	//비밀번호 변경 뷰로 연결해줌
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/auth/modifyMemberTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/modifyMember.jsp").forward(request, response);
 	}
 
 	//비밀번호 변경 action

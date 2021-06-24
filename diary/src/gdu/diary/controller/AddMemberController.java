@@ -19,7 +19,7 @@ public class AddMemberController extends HttpServlet {
 	
 	//회원가입 뷰로 forward
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/addMemberTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/addMember.jsp").forward(request, response);
 	}
 	//회원가입 액션 - service와 연결
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

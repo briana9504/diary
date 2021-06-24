@@ -20,7 +20,7 @@ public class RemoveMemberController extends HttpServlet {
 	//비밀번호 입력 폼 - 뷰로 연결
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/auth/removeMemberTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/removeMember.jsp").forward(request, response);
 	}
 	
 	//삭제 액션

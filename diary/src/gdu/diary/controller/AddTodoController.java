@@ -35,7 +35,7 @@ public class AddTodoController extends HttpServlet {
 		todoDate.setYear(year);
 		
 		request.setAttribute("todoDate", todoDate);
-		request.getRequestDispatcher("/WEB-INF/view/auth/addTodoTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/addTodo.jsp").forward(request, response);
 	}
 	// 액션: controller.doPost()-> DiaryService -> dao -> DiaryService -> addtodoController.doPost()
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

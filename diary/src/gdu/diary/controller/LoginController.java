@@ -19,7 +19,7 @@ public class LoginController extends HttpServlet {
 	//로그인 폼
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/loginTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
 	//로그인 액션
 	@Override

@@ -32,7 +32,7 @@ public class ModifyTodoOneController extends HttpServlet {
 		
 		request.setAttribute("todoOne", todoOne);
 		//수정폼으로 forward
-		request.getRequestDispatcher("/WEB-INF/view/auth/modifyTodoOneTest.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/auth/modifyTodoOne.jsp").forward(request, response);
 	}
 
 	//수정 액션
